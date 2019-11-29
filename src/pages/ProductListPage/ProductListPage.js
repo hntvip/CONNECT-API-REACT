@@ -1,8 +1,36 @@
 import React, { Component } from 'react'
 import ProductList from '../../components/ProductList/ProductList'
 import ProductItem from '../../components/ProductItem/ProductItem'
-
-export default class ProductListPage extends Component {
+import { connect } from 'react-redux'
+import callApi from '../../utils/apiCaller'
+import { Link } from 'react-router-dom'
+class ProductListPage extends Component {
+  constructor(prop) {
+    super(prop);
+    this.state = {
+      products: []
+    }
+  }
+  componentDidMount() {
+    callApi('products',null, 'get').then(res => {
+      this.setState({
+        products: res.data
+      })
+    })
+  }
+  render() {
+    var { products } = this.props;
+    return (
+      <div className="row">
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <Link to="product/add"className="btn btn-info mt-10">Them San Pham</Link>
+          <ProductList>
+            {this.showProducts(products)}
+          </ProductList>
+        </div>
+      </div>
+    )
+  }
   showProducts = (products) => {
     var result = null;
     if (products.length){
@@ -18,20 +46,12 @@ export default class ProductListPage extends Component {
 
     return result;
   }
-  render() {
-    var products = [];
-    return (
-      <div className="row">
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <button type="button" className="btn btn-info mt-10">
-            Them San Pham
-          </button>
-          
-          <ProductList>
-            {this.showProducts(products)}
-          </ProductList>
-        </div>
-      </div>
-    )
+}
+
+const mapStateToProps = state => {
+  return {
+    products: state.products
   }
 }
+
+export default connect(mapStateToProps,null)(ProductListPage)
