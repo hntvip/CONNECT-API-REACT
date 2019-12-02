@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import ApiCaller from '../../utils/apiCaller'
+import { connect } from 'react-redux'
+import { actAddProductRequest, actUpdateProductRequest, actGetProductRequest } from '../../actions'
 class ProductActionPage extends Component {
   constructor(props){
     super(props)
@@ -10,16 +11,34 @@ class ProductActionPage extends Component {
       checkStatus: true
     }
   } 
+  componentDidMount() {
+    var { match } = this.props;
+    if( match ) {
+      var id = match.params.id;
+      this.props.getProduct(id);
+    }
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
 
-    // ApiCaller('product','POST', {
-    //   'name': this.state.name,
-    //   'value': this.state.value,
-    //   'checkStatus': this.state.checkStatus
-    // }).then((res) => {
-    //   console.log(res)
-    // })
+    var { history } = this.props;
+    var { id , txtName, txtPrice, checkStatus } = this.state;
+
+    var product = {
+      id: id,
+      name: txtName,
+      price: txtPrice,
+      checkStatus: checkStatus
+    }
+
+    if(id){
+      this.props.updateProduct(product);
+      history.goBack();
+    } else { 
+      this.props.addProduct(product);
+      history.goBack();
+    } 
   }
   onChange = (e) => {
     var target = e.target;
@@ -32,9 +51,10 @@ class ProductActionPage extends Component {
   }
   render() {
     var { txtName, txtPrice, checkStatus } = this.state;
+
     return (
       <div className="row">
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} name="productForm">
           <div className="form-group">
             <label>Ten san pham</label>
             <input type="text" className="form-control" placeholder="Name" name="txtName" value={txtName} onChange={this.onChange}/>
@@ -56,4 +76,24 @@ class ProductActionPage extends Component {
 }
 
 
-export default ProductActionPage
+const mapStateToProps = (state, ownProps) => {
+  return {
+    product: state.product
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    getProduct: (id) => {
+      dispatch(actGetProductRequest(id))
+    },
+    addProduct: (product) => {
+      dispatch(actAddProductRequest(product))
+    },
+    updateProduct: (product) => {
+      dispatch(actUpdateProductRequest(product))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductActionPage)

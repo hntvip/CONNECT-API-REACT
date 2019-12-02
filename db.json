@@ -1,24 +1,6 @@
 {
   "products": [
     {
-      "id": 2,
-      "name": "Iphone 11",
-      "price": 1000,
-      "status": true
-    },
-    {
-      "id": 3,
-      "name": "Nokia 300",
-      "price": 100,
-      "status": true
-    },
-    {
-      "id": 4,
-      "name": "Nexue 3",
-      "price": 300,
-      "status": false
-    },
-    {
       "id": 5,
       "name": "Iphone 8",
       "price": 120,
@@ -29,6 +11,24 @@
       "name": "China Phone",
       "price": 100,
       "status": true
+    },
+    {
+      "id": 7,
+      "name": "Abc",
+      "price": "1111",
+      "checkStatus": true
+    },
+    {
+      "id": 8,
+      "name": "Ipad 4",
+      "price": "1200",
+      "checkStatus": true
+    },
+    {
+      "id": 9,
+      "name": "Chenmai",
+      "price": "123",
+      "checkStatus": true
     }
   ]
 }

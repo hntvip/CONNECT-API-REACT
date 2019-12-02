@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import products from './products'
-const appReducers = combineReducers(
-  {
+const appReducers = combineReducers({
     products
 })
 

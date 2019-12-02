@@ -8,6 +8,8 @@ const products = (state = initialState, action) => {
       return [...state]
     case Types.DELETE_PRODUCT:
       return actDeleteProduct(state, action.id)
+    case Types.ADD_PRODUCT:
+        return actAddProduct(state, action.product)
     default:
       return [...state]
   }
@@ -18,6 +20,17 @@ const actDeleteProduct = (state, id) => {
   if ( index > -1){
     products.splice(index, 1)
   }
+  return products;
+}
+const actAddProduct = (state, action ) => {
+  var products = [...state];
+  var product = { action };
+
+  var index = findById(product.id, products );
+  if(index === -1){
+    products.push(product)
+  }
+
   return products;
 }
 
