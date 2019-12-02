@@ -4,7 +4,7 @@ import ProductItem from '../../components/ProductItem/ProductItem'
 import { connect } from 'react-redux'
 // import callApi from '../../utils/apiCaller'
 import { Link } from 'react-router-dom'
-import { actFetchProductRequest } from '../../actions'
+import { actFetchProductRequest, actDeleteProductRequest } from '../../actions'
 
 class ProductListPage extends Component {
   constructor(prop) {
@@ -29,6 +29,11 @@ class ProductListPage extends Component {
       </div>
     )
   }
+
+  onDelete = (id) => {
+    this.props.deleteProduct(id);
+  }
+   
   showProducts = (products) => {
     var result = null;
     if (products.length){
@@ -37,7 +42,8 @@ class ProductListPage extends Component {
           <ProductItem
             key={index}
             product={product}
-            index={index}></ProductItem>
+            index={index}
+            onDelete={this.onDelete}></ProductItem>
         )
       });
     }
@@ -56,6 +62,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     fetchAllProducts: () => {
       dispatch(actFetchProductRequest())
+    },
+    deleteProduct: (id) => {
+      dispatch(actDeleteProductRequest(id))
     }
   }
 }

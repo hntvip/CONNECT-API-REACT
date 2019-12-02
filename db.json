@@ -1,25 +1,32 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Iphone 1",
-      "price": 100,
-      "status": true
-    },{
       "id": 2,
-      "name": "Samsung Note 9",
-      "price": 300,
-      "status": false
-    },
-    {
-      "id": 1,
       "name": "Iphone 11",
       "price": 1000,
       "status": true
     },
     {
-      "id": 1,
+      "id": 3,
       "name": "Nokia 300",
+      "price": 100,
+      "status": true
+    },
+    {
+      "id": 4,
+      "name": "Nexue 3",
+      "price": 300,
+      "status": false
+    },
+    {
+      "id": 5,
+      "name": "Iphone 8",
+      "price": 120,
+      "status": true
+    },
+    {
+      "id": 6,
+      "name": "China Phone",
       "price": 100,
       "status": true
     }

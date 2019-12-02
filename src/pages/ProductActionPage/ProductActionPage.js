@@ -13,13 +13,13 @@ class ProductActionPage extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    ApiCaller('product','POST', {
-      'name': this.state.name,
-      'value': this.state.value,
-      'checkStatus': this.state.checkStatus
-    }).then((res) => {
-      console.log(res)
-    })
+    // ApiCaller('product','POST', {
+    //   'name': this.state.name,
+    //   'value': this.state.value,
+    //   'checkStatus': this.state.checkStatus
+    // }).then((res) => {
+    //   console.log(res)
+    // })
   }
   onChange = (e) => {
     var target = e.target;
@@ -45,7 +45,7 @@ class ProductActionPage extends Component {
           </div>
           <div className="checkbox">
             <label>
-              <input type="checkbox"  name="checkStatus" value={checkStatus} onChange={this.onChange}/> 
+              <input type="checkbox"  name="checkStatus" value={checkStatus} onChange={this.onChange}/> Con Hang
             </label>
           </div>
           <button type="submit" className="btn btn-primary">Luu</button>
@@ -54,5 +54,6 @@ class ProductActionPage extends Component {
     )
   }
 }
+
 
 export default ProductActionPage
