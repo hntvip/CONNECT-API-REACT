@@ -13,7 +13,7 @@ class ProductActionPage extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    ApiCaller('prodcuct','POST', {
+    ApiCaller('product','POST', {
       'name': this.state.name,
       'value': this.state.value,
       'checkStatus': this.state.checkStatus
